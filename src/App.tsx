@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "./components/Layout";
-import TodoInput from "./components/Molecules/TodoInput";
+import Card from "./components/Organisms/Card";
 
 function App() {
   return (
     <Layout>
-      <TodoInput />
+      <Card />
     </Layout>
   );
 }
