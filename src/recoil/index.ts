@@ -1,5 +1,5 @@
 import { lists } from './../types/index';
-import { atom, selector } from "recoil";
+import { atom, } from "recoil";
 
 export const listsState = atom<lists[]>({
     key: 'listsState',
@@ -9,15 +9,7 @@ export const listsState = atom<lists[]>({
     }]
 })
 
-export const listsSelector = selector<any>({
-    key: 'listsSelector',
-    get: ({ get }) => {
-        return () => get(listsState)
-    },
-    set: ({ set }) => {
-
-        return {
-
-        }
-    }
+export const loadingState = atom<boolean>({
+    key: "loading",
+    default: false
 })

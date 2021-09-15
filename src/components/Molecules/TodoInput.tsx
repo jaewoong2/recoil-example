@@ -3,19 +3,18 @@ import { useInput } from "../../hooks/useInput";
 import { useRecoilHooks } from "../../hooks/useRecoilSet";
 import * as Atom from "../Atoms";
 
-const TodoInput: React.FC = () => {
-  const [todo, setTodo, onChangeTodo] = useInput("");
-  const { addLists } = useRecoilHooks();
+interface TodoInputProps {
+  onSubmit: (e: React.FormEvent) => void;
+  onChangeTodo: (todo: string) => void;
+  todo: string;
+}
 
-  const onSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      addLists({ todo, isCompleted: false });
-      setTodo("");
-    },
-    [addLists, todo, setTodo]
-  );
-
+const TodoInput: React.FC<TodoInputProps> = ({
+  onSubmit,
+  onChangeTodo,
+  todo,
+  children,
+}) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -23,7 +22,7 @@ const TodoInput: React.FC = () => {
           value={todo}
           onChange={(e) => onChangeTodo(e.target.value)}
         />
-        <Atom.Button>+</Atom.Button>
+        {children}
       </form>
     </div>
   );
